@@ -6,14 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-
 public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHolder>{
 
     Context mContext;
@@ -25,22 +21,26 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
     }
 
     public  static class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imgBanner;
-        TextView txtTitle, txtDescription;
+        TextView tid, tname,temail,tpass;
         public ViewHolder(View v){
             super(v);
-            imgBanner =  v.findViewById(R.id.imgBanner);
-            txtTitle =  v.findViewById(R.id.txtTitle);
-            txtDescription =  v.findViewById(R.id.txtDescription);
+
+            tid =  v.findViewById(R.id.txtid);
+            tname =  v.findViewById(R.id.txtname);
+            temail =  v.findViewById(R.id.txtemail);
+            tpass =  v.findViewById(R.id.txtpass);
         }
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         HashMap<String, String> map = mArray.get(position);
-        Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
-        holder.txtTitle.setText(map.get("title"));
-        holder.txtDescription.setText(map.get("detail"));
+        // Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
+        holder.tid.setText(map.get("id"));
+        holder.tname.setText(map.get("name"));
+        holder.temail.setText(map.get("email"));
+        holder.tpass.setText(map.get("pass"));
+
     }
 
     @Override

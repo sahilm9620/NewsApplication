@@ -43,26 +43,27 @@ public class MainActivity extends AppCompatActivity {
 
 // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://chandansatyendraprasad.000webhostapp.com/tests";
+        String url = "https://hackingtools.tech/Android/viewdata.php";
 
-// Request a string response from the provided URL.
+// Request a string response from the provided URL. crash tuza yetoy
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        Toast.makeText(MainActivity.this, "Response is: " + response.substring(0, 500), Toast.LENGTH_SHORT).show();
-                        parseing_Server_Response(response);
+                        //Toast.makeText(MainActivity.this, "Response is: " + response.substring(0, 500), Toast.LENGTH_SHORT).show();
+                       parseing_Server_Response(response);
+                       // System.out.println("Response : " + response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(MainActivity.this, "That didn't work!", Toast.LENGTH_SHORT).show();
-
+               // System.out.println("Response : " + error);
             }
         });
 
-// Add the request to the RequestQueue.
+// Add the request to the RequestQueue. crash crash arr ha problem ahe
         queue.add(stringRequest);
     }
 
@@ -74,14 +75,16 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < arrayHeadlines.length(); i++) {
                 JSONObject objItem = arrayHeadlines.getJSONObject(i);
 
-                String title = objItem.getString("title");
-                String imgUrl = objItem.getString("imgUrl");
-                String description = objItem.getString("description");
+                String u_id = objItem.getString("u_id");
+                String name = objItem.getString("name");
+                String email = objItem.getString("email");
+                String pass = objItem.getString("pass");
 
                 HashMap<String, String> map = new HashMap<>();
-                map.put("title", title);
-                map.put("url", imgUrl);
-                map.put("detail", description);
+                map.put("id", u_id);
+                map.put("name", name);
+                map.put("email", email);
+                map.put("pass", pass);
                 arrayListNews.add(map);
             }
             //set adapter
@@ -93,3 +96,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
